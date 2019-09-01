@@ -294,8 +294,24 @@ var AMX = {
     },
 
     onSearchPress: function(channel, control, value) {
-        var button = (control === 2) ? 'search1' : 'search2';
-        AMX.toggleMode(button);
+        // Enable DVS when shift is pressed.
+        if (!AMX.activeModes.shift) {
+            var button = (control === 2) ? 'search1' : 'search2';
+            AMX.toggleMode(button);
+        } else if (value == 0) {
+            // on SHIFT
+            var button = (control === 2) ? 'search1' : 'search2';
+            if (button == 'search1') {
+                channel='[Channel1]';
+            } else {
+                channel='[Channel2]'
+            }
+            if (!engine.getValue(channel, 'vinylcontrol_enabled')) {
+                engine.setValue(channel, 'vinylcontrol_enabled', 1);
+            } else {
+                engine.setValue(channel, 'vinylcontrol_enabled', 0);
+            }
+        }
     },
 
     crossfaderSwitch: function(channel, control, value) {
