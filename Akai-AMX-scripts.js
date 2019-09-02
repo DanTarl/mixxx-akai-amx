@@ -312,6 +312,9 @@ var AMX = {
         } else if (value == 0) {
             // on SHIFT
             engine.setValue(channel, 'vinylcontrol_enabled', !engine.getValue(channel, 'vinylcontrol_enabled'));
+            if (!engine.getValue(channel, 'vinylcontrol_enabled')) {
+                engine.setValue(channel, 'passthrough', 0);
+            }
         }
     },
 
