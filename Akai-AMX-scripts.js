@@ -311,11 +311,7 @@ var AMX = {
             }
         } else if (value == 0) {
             // on SHIFT
-            if (!engine.getValue(channel, 'vinylcontrol_enabled')) {
-                engine.setValue(channel, 'vinylcontrol_enabled', 1);
-            } else {
-                engine.setValue(channel, 'vinylcontrol_enabled', 0);
-            }
+            engine.setValue(channel, 'vinylcontrol_enabled', !engine.getValue(channel, 'vinylcontrol_enabled'));
         }
     },
 
